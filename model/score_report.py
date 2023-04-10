@@ -10,7 +10,7 @@ if __name__ == '__main__':
     label_true = []
     label_pred = []
     target_names = []
-    with Path(args.file).open() as f:
+    with Path(args.file).open('r', encoding='utf-8') as f:
         for line in f:
             tag_name = line.strip().split()[0]
             if tag_name not in target_names:
