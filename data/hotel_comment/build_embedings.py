@@ -13,7 +13,7 @@ if __name__ == '__main__':
 
     found = 0
     print('Reading W2V file (may take a while)')
-    with Path('../../sgns.zhihu.bigram').open(encoding='utf-8') as f:
+    with Path('../sgns/sgns.zhihu.bigram').open(encoding='utf-8') as f:
         for line_idx, line in enumerate(f):
             if line_idx % 100000 == 0:
                 print('- At line {}'.format(line_idx))
