@@ -27,7 +27,7 @@ def parse_fn(line_words, line_tag):
 
 
 def generator_fn(words, tags):
-    with Path(words).open('r') as f_words, Path(tags).open('r') as f_tags:
+    with Path(words).open('r', encoding='utf-8') as f_words, Path(tags).open('r', encoding='utf-8') as f_tags:
         for line_words, line_tag in zip(f_words, f_tags):
             yield parse_fn(line_words, line_tag)
 
@@ -60,7 +60,7 @@ def model_fn(features, labels, mode, params):
     training = (mode == tf.estimator.ModeKeys.TRAIN)
     vocab_words = tf.contrib.lookup.index_table_from_file(
         params['words'], num_oov_buckets=params['num_oov_buckets'])
-    with Path(params['tags']).open() as f:
+    with Path(params['tags']).open('r', encoding='utf-8') as f:
         indices = [idx for idx, tag in enumerate(f)]
         num_tags = len(indices)
 
