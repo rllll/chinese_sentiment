@@ -19,7 +19,7 @@ def read_data_from_excel():
     if os.path.exists(train_data_file) and os.path.exists(test_data_file):
         return
     # type_list = ['宝马1系', '宝马2系', '宝马3系（1）','宝马3系（2）', '宝马3系（3）', '宝马3系（4）','宝马3系（5）', '宝马3系（6）', '宝马3系（7）','宝马3系（8）', '宝马3系（9）', '宝马3系（10)','宝马3系（11）', '宝马3系（12）', '宝马4系','宝马5系','宝马X1（1）', '宝马X1（2）', '宝马X1(5)', '宝马X2', '宝马X3']
-    type_list = ['宝马2系']
+    type_list = ['宝马3系（3）']
     df = pd.read_excel('./my_data/bmw_all.xlsx', sheet_name=type_list, usecols=[2, 21], dtype=str)
     contents, labels = [], []
     for type in type_list:
@@ -29,8 +29,13 @@ def read_data_from_excel():
     encode_labels = []
     for label in labels:
         if label == '1':
+            # 积极的
             encode_labels.append('POS')
-        else:
+        elif label == '0':
+            # 中性的
+            encode_labels.append('NEU')
+        elif label == '-1':
+            # 消极的
             encode_labels.append('NEG')
     print(encode_labels)
     train_words, test_words, train_labels, test_labels = train_test_split(contents, encode_labels, test_size=0.2)
