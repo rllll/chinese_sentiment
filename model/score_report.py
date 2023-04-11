@@ -17,4 +17,4 @@ if __name__ == '__main__':
                 target_names.append(tag_name)
             label_true.append(tag_name)
             label_pred.append(line.strip().split()[1])
-    print(metrics.classification_report(y_pred=label_pred, y_true=label_true, target_names=['POS', 'NEG']))
+    print(metrics.classification_report(y_pred=label_pred, y_true=label_true, target_names=['POS', 'NEU', 'NEG']))
