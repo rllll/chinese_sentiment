@@ -24,9 +24,9 @@ def read_data_from_excel():
     df = pd.read_excel('./my_data/bmw_all.xlsx', sheet_name=type_list, dtype=str)
     contents, labels = [], []
     for type in type_list:
-        df_drop = df[type].dropna(subset=[dimens[2], '具体评价'])
+        df_drop = df[type].dropna(subset=[dimens[8], '具体评价'])
         contents += df_drop["具体评价"].tolist()
-        labels += df_drop[dimens[2]].tolist()
+        labels += df_drop[dimens[8]].tolist()
     real_contents = []
     encode_labels = []
     for idx, label in enumerate(labels):
