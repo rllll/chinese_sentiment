@@ -18,27 +18,30 @@ def read_data_from_excel():
     train_data_file, test_data_file = './my_data/train.csv', './my_data/test.csv'
     if os.path.exists(train_data_file) and os.path.exists(test_data_file):
         return
-    # type_list = ['宝马1系', '宝马2系', '宝马3系（1）','宝马3系（2）', '宝马3系（3）', '宝马3系（4）','宝马3系（5）', '宝马3系（6）', '宝马3系（7）','宝马3系（8）', '宝马3系（9）', '宝马3系（10)','宝马3系（11）', '宝马3系（12）', '宝马4系','宝马5系','宝马X1（1）', '宝马X1（2）', '宝马X1(5)', '宝马X2', '宝马X3']
-    type_list = ['宝马3系（3）']
-    df = pd.read_excel('./my_data/bmw_all.xlsx', sheet_name=type_list, usecols=[2, 21], dtype=str)
+    type_list = ['宝马1系', '宝马2系', '宝马3系（1）','宝马3系（2）', '宝马3系（3）', '宝马3系（4）','宝马3系（5）', '宝马3系（6）', '宝马3系（7）','宝马3系（8）', '宝马3系（9）', '宝马3系（10)','宝马3系（11）', '宝马3系（12）', '宝马4系','宝马5系','宝马X1（1）', '宝马X1（2）', '宝马X1(5)', '宝马X2', '宝马X3']
+    # type_list = ['宝马3系（3）']
+    df = pd.read_excel('./my_data/bmw_all.xlsx', sheet_name=type_list, dtype=str)
     contents, labels = [], []
     for type in type_list:
-        df_drop = df[type].dropna(subset=['总的来说'])
+        df_drop = df[type].dropna(subset=['总的来说', '具体评价'])
         contents += df_drop["具体评价"].tolist()
         labels += df_drop['总的来说'].tolist()
+    real_contents = []
     encode_labels = []
-    for label in labels:
+    for idx, label in enumerate(labels):
         if label == '1':
             # 积极的
             encode_labels.append('POS')
+            real_contents.append(contents[idx])
         elif label == '0':
             # 中性的
             encode_labels.append('NEU')
+            real_contents.append(contents[idx])
         elif label == '-1':
             # 消极的
             encode_labels.append('NEG')
-    print(encode_labels)
-    train_words, test_words, train_labels, test_labels = train_test_split(contents, encode_labels, test_size=0.2)
+            real_contents.append(contents[idx])
+    train_words, test_words, train_labels, test_labels = train_test_split(real_contents, encode_labels, test_size=0.2)
     return train_words, test_words, train_labels, test_labels
 
 def save_words_to_text(mode, save_words):
