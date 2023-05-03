@@ -6,7 +6,7 @@ import numpy as np
 import tensorflow as tf
 from pathlib import Path
 
-DATA_DIR = '../../data/hotel_comment'
+DATA_DIR = '../../unbalanced_data/0_space_unbalanced'
 
 # Logging
 Path('results').mkdir(exist_ok=True)
