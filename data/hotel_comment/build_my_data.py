@@ -4,6 +4,8 @@ import jieba
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
+dimens = ['空间', '动力', '操控', '能耗', '舒适性', '外观', '内饰', '性价比', '配置', '续航', '安全性', '环保', '质量与可靠性', '充电', '服务', '品牌', '智能驾驶', '其它', '总的来说']
+
 
 def build_data_file(directory, samples_path, label, mode_str):
     for sample_path in samples_path:
@@ -23,9 +25,9 @@ def read_data_from_excel():
     df = pd.read_excel('./my_data/bmw_all.xlsx', sheet_name=type_list, dtype=str)
     contents, labels = [], []
     for type in type_list:
-        df_drop = df[type].dropna(subset=['总的来说', '具体评价'])
+        df_drop = df[type].dropna(subset=[dimens[0], '具体评价'])
         contents += df_drop["具体评价"].tolist()
-        labels += df_drop['总的来说'].tolist()
+        labels += df_drop[dimens[0]].tolist()
     real_contents = []
     encode_labels = []
     for idx, label in enumerate(labels):
