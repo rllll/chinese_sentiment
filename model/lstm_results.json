@@ -1,0 +1,35 @@
+﻿{
+  "总的来说": {
+    "POS": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 2449
+    },
+    "NEG": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 1287
+    },
+    "NEU": {
+      "precision": 0.7316477517598047,
+      "recall": 1.0,
+      "f1-score": 0.8450306952049113,
+      "support": 10186
+    },
+    "accuracy": 0.7316477517598047,
+    "macro avg": {
+      "precision": 0.2438825839199349,
+      "recall": 0.3333333333333333,
+      "f1-score": 0.28167689840163707,
+      "support": 13922
+    },
+    "weighted avg": {
+      "precision": 0.5353084326551767,
+      "recall": 0.7316477517598047,
+      "f1-score": 0.618264808314698,
+      "support": 13922
+    }
+  }
+}
