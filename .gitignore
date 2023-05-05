@@ -1,7 +1,6 @@
 *.pyc
 .vscode/
 .ipynb_checkpoints/
-sgns.*
 neg/
 pos/
 fix_pos/
